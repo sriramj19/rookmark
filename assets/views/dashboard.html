@@ -1,3 +1,40 @@
-<div ng-controller="BookmarksController" ng-if="loadBookmarks()">
-
+<div ng-controller="BookmarksController" ng-init="loadBookmarks()">
+  <div class="container mt-4">
+    <div class="row">
+      <div class="d-flux justify-content-end" ng-if="!newBookmark">
+        <span id="addBookmark" ng-click="bookmarkPanel()">New Bookmark<i class="fa fa-plus-circle"></i></span>
+      </div>
+    </div>
+    <div class="row" ng-if="newBookmark">
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <input type="text" name="name" class="form-control" placeholder="Bookmark Name" ng-model="name">
+            <input type="text" name="url" class="form-control" placeholder="URL" ng-model="url">
+            <input type="text" name="tags" class="form-control" placeholder="Tags(Optional, Separated by commas)" ng-model="tags">
+            <button type="button" name="bookmark" class="bttn-slant bttn-sm bttn-default" ng-click="addBookmark(name, url, tags)">Add Bookmark</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="justify-content-md-center row" ng-if="noBookmarks">
+      <p class="lead bold">Seems like you don't have any bookmarks, Go ahead create a new Bookmark</p>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="button" name="button" ng-click="refreshPage()" ng-if="refresh" class="pull-right bttn-simple bttn-sm bttn-primary">Refresh</button>
+        <input class="pull-right" type="search" name="tagsearch" placeholder="Search by Tags" ng-model="Tag"/>
+        <button type="button" name="button" ng-click="search(Tag)" class="pull-right bttn-slant bttn-sm bttn-primary">Search</button>
+        <div class="list-group">
+          <a ng-href="{{bookmark.url}}" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="bookmark in userBookmarks">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{bookmark.name}}</h5>
+              <small class="text-muted">{{bookmark.createdAt | date}}</small>
+            </div>
+            <p><span class="badge badge-primary badge-pill mr-2" ng-repeat="tag in bookmark.tags">{{tag}}</span></p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
