@@ -27,9 +27,10 @@ app.controller('BookmarksController', ['$scope', 'BookmarksService', '$localStor
   $scope.bookmarkPanel = function() {
     $scope.newBookmark = true;
   }
-  /*Refresh the page*/
+  /*Refresh the view*/
   $scope.refreshPage = function() {
     $scope.loadBookmarks();
+    $scope.Tag = "";
   }
   /*Generate New Bookmarks*/
   $scope.addBookmark = function(name, url, tags) {
