@@ -5,10 +5,11 @@ var app = angular.module('app');
 /* Users Controller */
 
 app.controller('UsersController',
-['$scope', 'UsersService', '$localStorage', '$state', 
+['$scope', 'UsersService', '$localStorage', '$state',
 function($scope, UsersService, $localStorage, $state) {
   $scope.checkUser = function() {
     if($localStorage.userDetails) {
+      console.log($localStorage.userDetails);
       $scope.app.userDetails = _.clone($localStorage.userDetails);
     }
   }
