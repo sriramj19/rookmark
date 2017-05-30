@@ -1,15 +1,10 @@
 <div class="ui-base">
-	<div class="navbar navbar-info">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-material-light-blue-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Angular Starter</a>
-      </div>
-    </div>
-  </div>
+	<nav class="navbar navbar-light sticky-top" id="header">
+		<div class="container">
+			<div class="text-center">
+				<a class="navbar-brand" href="" ng-click="app.landing()"><b>Rookmark</b></a>
+				<a href="" id="logout" class="small" ng-if="app.userDetails" ng-click="app.logout()">(Logout)</a>
+			</div>
+	</nav>
 	<div ui-view />
 </div>
