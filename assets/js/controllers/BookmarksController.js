@@ -5,12 +5,12 @@ var app = angular.module('app');
 
 app.controller('BookmarksController', ['$scope', 'BookmarksService', '$localStorage',
  function($scope, BookmarksService, $localStorage) {
-  $scope.noBookmarks = false;
-  $scope.newBookmark = false;
-  $scope.userBookmarks = {};
-  $scope.refresh = false;
   /*loadBookmarks load all user bookmarks*/
   $scope.loadBookmarks = function() {
+    $scope.noBookmarks = false;
+    $scope.newBookmark = false;
+    $scope.userBookmarks = {};
+    $scope.refresh = false;
     if($localStorage.userDetails) {
       $scope.app.userDetails = _.clone($localStorage.userDetails);
       BookmarksService.viewBookmarks($scope.app.apiURL, $scope.app.userDetails.id).then(function(response) {
@@ -29,7 +29,7 @@ app.controller('BookmarksController', ['$scope', 'BookmarksService', '$localStor
   }
   /*Refresh the page*/
   $scope.refreshPage = function() {
-    location.reload();
+    $scope.loadBookmarks();
   }
   /*Generate New Bookmarks*/
   $scope.addBookmark = function(name, url, tags) {
