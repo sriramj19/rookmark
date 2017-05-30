@@ -1,7 +1,7 @@
 /**
  * Users.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @description :: TODO: Data for handling users
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
@@ -10,11 +10,11 @@ module.exports = {
   attributes: {
     emailAddress: {
       type: 'string',
-      required: 'true'
+      required: true
     },
     password: {
       type: 'string',
-      required: 'true'
+      required: true
     }
   }
 };
