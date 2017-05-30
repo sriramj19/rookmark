@@ -7,13 +7,12 @@ angular.module('app')
       name: 'rookmark',
       version: '1.0.0',
       apiURL: 'http://' + location.host + '/',
-      userDetails: {},
       landing: function() {
         if($localStorage.userDetails) {
-          $state.go('dashboard')
+          $state.go('dashboard');
         }
         else {
-          $state.go('login')
+          $state.go('login');
         }
       },
       logout: function() {
