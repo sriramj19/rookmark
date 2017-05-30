@@ -7,12 +7,13 @@ var app = angular.module('app');
 app.controller('UsersController',
 ['$scope', 'UsersService', '$localStorage', '$state',
 function($scope, UsersService, $localStorage, $state) {
+  //Check if user data exists
   $scope.checkUser = function() {
     if($localStorage.userDetails) {
-      console.log($localStorage.userDetails);
       $scope.app.userDetails = _.clone($localStorage.userDetails);
     }
   }
+  //Login via credentials
   $scope.login = function() {
     if($scope.emailAddress && $scope.password) {
       UsersService.signin($scope.app.apiURL, $scope.emailAddress, $scope.password).then(function(response) {
@@ -24,6 +25,7 @@ function($scope, UsersService, $localStorage, $state) {
       });
     }
   }
+  //Register into Rookmark
   $scope.register = function() {
     if($scope.emailAddress && $scope.password) {
       UsersService.signup($scope.app.apiURL, $scope.emailAddress, $scope.password).then(function(response) {
