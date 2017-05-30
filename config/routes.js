@@ -52,5 +52,6 @@ module.exports.routes = {
   'POST /bookmarks/create'              : 'BookmarksController.createBookmark',
   'GET /bookmarks/read/:id'             : 'BookmarksController.viewBookmarks',
   'DELETE /bookmarks/delete'            : 'BookmarksController.deleteBookmark',
+  'POST /bookmarks/search'              : 'BookmarksController.searchByTag',
 
 };
