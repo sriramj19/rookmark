@@ -17,10 +17,12 @@ module.exports = {
 	*/
 	createBookmark: function(req, res) {
 		var data = req.allParams();
-		var tags = req.param('tags').toLowerCase();
-		tags = tags.replace(/\s/g,'');
-		tags = tags.split(",");
-		data.tags = tags;
+		if(req.param('tags')) {
+			var tags = req.param('tags').toLowerCase();
+			tags = tags.replace(/\s/g,'');
+			tags = tags.split(",");
+			data.tags = tags;
+		}
 		Bookmarks.create(data).exec(function(err, response) {
 			if(err)	return console.log(err);
 
@@ -67,5 +69,33 @@ module.exports = {
 			}
 		});
 	},
+
+	/* searchByTag Search a particular bookmark by tag
+		Method : {POST}
+		API: /bookmarks/search
+		apiParams: tag 'string' The bookmark tag
+							 id 'string' The user id
+		response: If successful, returns bookmark data.
+	*/
+	searchByTag: function(req, res) {
+		Bookmarks.find({user: req.param('id')}).exec(function(err, response) {
+			if(err)	return console.log(err);
+
+			if(response.length) {
+				var searchData = [];
+				_.forEach(response, function(value) {
+					_.forEach(value.tags, function(tag) {
+						if(req.param('tag') == tag) {
+							searchData.push(value);
+						}
+					});
+				});
+				return res.json(searchData);
+			}
+			else {
+				return res.status(404).json({error: "No bookmarks found as per tag provided"});
+			}
+		});
+	}
 
 };
