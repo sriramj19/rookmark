@@ -49,5 +49,8 @@ module.exports.routes = {
   'POST /users/signup'                  : 'UsersController.registerUser',
   'POST /users/signin'                  : 'UsersController.login',
 
-  
+  'POST /bookmarks/create'              : 'BookmarksController.createBookmark',
+  'GET /bookmarks/read/:id'             : 'BookmarksController.viewBookmarks',
+  'DELETE /bookmarks/delete'            : 'BookmarksController.deleteBookmark',
+
 };
