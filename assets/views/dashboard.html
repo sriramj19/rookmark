@@ -26,7 +26,7 @@
         <input class="pull-right" type="search" name="tagsearch" placeholder="Search by Tags" ng-model="Tag"/>
         <button type="button" name="button" ng-click="search(Tag)" class="pull-right bttn-slant bttn-sm bttn-primary">Search</button>
         <div class="list-group">
-          <a ng-href="{{bookmark.url}}" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="bookmark in userBookmarks">
+          <a ng-href="{{bookmark.url}}" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="bookmark in userBookmarks | orderBy: '-createdAt'">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{bookmark.name}}</h5>
               <small class="text-muted">{{bookmark.createdAt | date}}</small>
