@@ -20,7 +20,7 @@ module.exports = {
 			if(err)	return console.log(err);
 
 			if(response) {
-				return res.status(409).json({error: "email address is already signed up, try logging in"});
+				return res.status(409).json({error: "email address already exists"});
 			}
 			else {
 				bcrypt.genSalt(10, function(err, salt) {
