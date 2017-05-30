@@ -1,0 +1,23 @@
+<div ng-controller="UsersController" ng-init="checkUser()">
+  <div class="wrapper mt-5">
+    <div class="container mt-5">
+        <div class="row justify-content-md-center">
+          <form>
+            <div class="text-center">
+              <p class="lead">Login or Signup</p>
+            </div>
+            <input type="email" name="emailAddress" class="form-control" ng-model="emailAddress" placeholder="Email Address">
+            <input type="password" name="password" class="form-control" ng-model="password" placeholder="Password">
+            <div class="mt-2">
+              <div class="pull-left">
+                <button type="button" name="login" ng-click="login()" class="bttn-slant bttn-sm bttn-primary">Login</button>
+              </div>
+              <div class="pull-right">
+                <button type="button" name="register" ng-click="register()" class="bttn-slant bttn-sm bttn-warning">Register</button>
+              </div>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
