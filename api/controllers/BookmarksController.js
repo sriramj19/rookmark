@@ -70,7 +70,7 @@ module.exports = {
 		});
 	},
 
-	/* searchByTag Search a particular bookmark by tag
+	/* searchByTag Search a particular bookmark by tag, if backend filter is required in any case
 		Method : {POST}
 		API: /bookmarks/search
 		apiParams: tag 'string' The bookmark tag
