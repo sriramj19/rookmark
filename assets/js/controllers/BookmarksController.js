@@ -9,7 +9,7 @@ app.controller('BookmarksController', ['$scope', 'BookmarksService', '$localStor
   $scope.loadBookmarks = function() {
     $scope.noBookmarks = false;
     $scope.newBookmark = false;
-    $scope.userBookmarks = {};
+    $scope.userBookmarks = [];
     $scope.refresh = false;
     if($localStorage.userDetails) {
       $scope.app.userDetails = _.clone($localStorage.userDetails);
@@ -30,7 +30,7 @@ app.controller('BookmarksController', ['$scope', 'BookmarksService', '$localStor
   /*Refresh the view*/
   $scope.refreshPage = function() {
     $scope.loadBookmarks();
-    $scope.Tag = "";
+    $scope.searchTag = "";
   }
   /*Generate New Bookmarks*/
   $scope.addBookmark = function(name, url, tags) {
@@ -42,13 +42,20 @@ app.controller('BookmarksController', ['$scope', 'BookmarksService', '$localStor
         }
       });
   }
-  /*Search bookmarks by tag*/
-  $scope.search = function(tag) {
-    BookmarksService.searchBookmark($scope.app.apiURL, tag, $scope.app.userDetails.id).then(function(response) {
-      if(response) {
-        $scope.userBookmarks = _.clone(response);
-        $scope.refresh = true;
-      }
+  /*Bookmarks filtered by tag*/
+  $scope.bookmarks = function(tag) {
+    if(tag)
+      tag = tag.toLowerCase();
+    $scope.searchResults = [];
+    if(!tag)
+      return $scope.userBookmarks;
+    _.forEach($scope.userBookmarks, function(value) {
+      _.forEach(value.tags, function(filterTag) {
+        if(_.includes(filterTag, tag)) {
+          $scope.searchResults.push(value);
+        }
+      });
     });
+    return $scope.searchResults;
   }
 }]);
