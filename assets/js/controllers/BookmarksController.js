@@ -25,7 +25,7 @@ app.controller('BookmarksController', ['$scope', 'BookmarksService', '$localStor
   }
   /*Add new bookmarks*/
   $scope.bookmarkPanel = function() {
-    $scope.newBookmark = true;
+    $scope.newBookmark = !$scope.newBookmark;
   }
   /*Refresh the view*/
   $scope.refreshPage = function() {
@@ -53,6 +53,7 @@ app.controller('BookmarksController', ['$scope', 'BookmarksService', '$localStor
       _.forEach(value.tags, function(filterTag) {
         if(_.includes(filterTag, tag)) {
           $scope.searchResults.push(value);
+          return false;
         }
       });
     });
