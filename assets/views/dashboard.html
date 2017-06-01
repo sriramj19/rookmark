@@ -12,7 +12,10 @@
             <input type="text" name="name" class="form-control" placeholder="Bookmark Name" ng-model="name">
             <input type="text" name="url" class="form-control" placeholder="URL" ng-model="url">
             <input type="text" name="tags" class="form-control" placeholder="Tags(Optional, Separated by commas)" ng-model="tags">
-            <button type="button" name="bookmark" class="bttn-slant bttn-sm bttn-default" ng-click="addBookmark(name, url, tags)">Add Bookmark</button>
+            <div class="col">
+              <button type="button" name="bookmark" class="bttn-slant bttn-sm bttn-default" ng-click="addBookmark(name, url, tags)">Add Bookmark</button>
+              <button type="button" name="cancel" class="bttn-minimal bttn-sm bttn-danger pull-right" ng-click="bookmarkPanel()">Cancel</button>
+            </div>
           </li>
         </ul>
       </div>
@@ -22,7 +25,6 @@
     </div>
     <div class="row">
       <div class="col">
-        <input class="pull-right" type="search" name="tagsearch" placeholder="Filter by Tags" data-ng-model="searchTag"/>
         <div class="list-group">
           <a ng-href="{{bookmark.url}}" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="bookmark in bookmarks(searchTag) track by $index">
             <div class="d-flex w-100 justify-content-between">
@@ -32,6 +34,13 @@
             <p><span class="badge badge-primary badge-pill mr-2" ng-repeat="tag in bookmark.tags">{{tag}}</span></p>
           </a>
         </div>
+      </div>
+      <div class="col-3">
+        <form>
+          <div class="form-group">
+            <input class="pull-right form-control" type="search" name="tagsearch" placeholder="Filter by Tags" data-ng-model="searchTag"/>
+          </div>
+        </form>
       </div>
     </div>
   </div>
