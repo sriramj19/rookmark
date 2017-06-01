@@ -26,7 +26,7 @@ app.factory('BookmarksService', function($http) {
         alert(x.data.error);
       });
     },
-    //API for searching bookmarks
+    //API for searching bookmarks if backend filter is preferred
     searchBookmark: function(url, tag, id) {
       return $http.post(url + 'bookmarks/search', {tag : tag, id: id}).then(function(response) {
         if(response) {
